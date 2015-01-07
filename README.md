@@ -1,4 +1,5 @@
-#http://mrkrucible.github.io/Install-Arch-Linux/
+#Install-Arch-Linux _view link below_
+**http://mrkrucible.github.io/Install-Arch-Linux/**
 
 ##todo:
 - Fix current errors in tutorial.html
