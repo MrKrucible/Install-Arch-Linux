@@ -1,72 +1,376 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Install-arch-linux by MrKrucible</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-  </head>
-  <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/MrKrucible/Install-Arch-Linux">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/MrKrucible/Install-Arch-Linux/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/MrKrucible/Install-Arch-Linux/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
-
-    <div class="wrapper">
-
-      <section>
-        <div id="title">
-          <h1>Install-arch-linux</h1>
-          <p>My tutorial on installing Arch Linux.</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/MrKrucible">MrKrucible</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
-
-        <pre><code>Introduction
-
-Part 1: Disk Setup
-Disk Partitions
-Mounting &amp; Formatting
-
-Part 2: System Setup
-Base Install
-Computer's Name
-Time Zones
-Boot Loader
-Internet Connection
-Enable Multilib (64x)
-Root Password
-Unmount
-
-Part 3: Finishing Touches
-First Login
-Installing Sudo
-Creating A User
-Desktop Enviroment
-Forgot Password?
-
-Post Installation 
-</code></pre>
-      </section>
-
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
-  </body>
+<!DOCTYPE html>
+<!-- I <3 cruft -->
+<html style="background-color:#444444">
+<center>
+<section style="background-color:#f2f2f2;width:650px;">
+<head>
+<link rel="shortcut icon" href="https://dl.dropboxusercontent.com/u/4339037/HTML/INSTALL_ARCHLINUX/arch_linux_favicon.ico" />
+<meta charset="UTF-8" />
+	<h1 style="bold;color:#0066CC;background-color:black;padding:5px;width:640px;font-size:50px">
+			Install Arch Linux
+	</h1>
+	<title>
+		Install Arch Linux
+	</title>
+</head>
+<body id="content_b">
+<div style="width:650px;color:black">
+<ul style="font-size:18px" id="index">
+	<li><a href="#intro">Introduction</a>
+	<br><br>
+	<li><a href="#step1">Part 1: Disk Setup
+	<li><a href="#cfdisk">Disk Partitions</a>
+	<li><a href="#format">Mounting & Formatting</a>
+	<br><br>
+	<li><a href="#step2">Part 2: System Setup
+	<li><a href="#base_install">Base Install</a>
+	<li><a href="#hostname">Computer's Name</a>
+	<li><a href="#time_zone">Time Zones</a>
+	<li><a href="#boot_loader">Boot Loader</a>
+	<li><a href="#internet">Internet Connection</a>
+	<li><a href="#multilib"> Enable Multilib (64x)</a>
+	<li><a href="#root_password">Root Password</a>
+	<li><a href="#umount">Unmount
+	<br><br>
+	<li><a href="#step3">Part 3: Finishing Touches</a>
+	<li><a href="#sys_login">First Login</a>
+	<li><a href="#pacman_sudo">Installing Sudo</a>
+	<li><a href="#make_user">Creating A User</a>
+	<li><a href="#gnome_desktop">Desktop Enviroment</a>
+	<li><a href="#end">Forgot Password?</a>
+	</br></br>
+	<li><a href="#post_install">Post Installation</a>
+	</ul>
+	<li<a href="">
+</ul>
+	<h2 id="intro" style="strong;margin:50px;padding:5px;">
+		This is Josh's tutorial on how to install <span style="color:#0066CC;">Arch Linux</span>.</br>
+		</br>
+		Anything in <span style="color:red">RED</span> requires your input,</br>
+		and anything in <span style="color:#0066CC;">BLUE</span> are key words.</br>
+		</br>
+		You will require an internet connection.</br>
+		The <a href="https://www.archlinux.org/download/">Arch.iso</a> with some install media.</br>
+		Competent reading and problem solving skills.
+		<br><br>
+		I <em style="color:#0066CC;">assume</em> that you want a 64-bit version of Arch Linux that's compatable with BIOS motherboards.
+		</br></br>
+		So by the end of this tutorial you'll have 64-bit Arch Linux running with a Gnome Desktop. There are also a few additional commands to get applications after installation like Steam, VLC, and Mumble.
+	</h2>
+	<strong>
+	<font size="5px">
+	<h3 id="step1" style="margin:6px;padding:2px;strong;background-color:black;color:#0066CC;">
+		<font size="6px">
+			Step 1: Disk Setup
+		</font size>
+	</h3>
+	<!-- The </body> , </strong> , and </font> tags effect the entire document and their end tags are found at the bottom. -->
+		<p id="select_image">
+			First, we need to boot into the proper disk image. In most cases, you want to select the below boot image at start. This selects the 32 bit and 64 bit ISO files for installation.
+			<pre style="background-color:#CCCCCC;">Boot Arch Linux (x86_64)</pre>
+			<img src="https://dl.dropboxusercontent.com/u/4339037/HTML/INSTALL_ARCHLINUX/86_64x.PNG" style="width:650px" alt="x86_64";>
+			The default keyboard layout is US. If you want to use a different layout run this where layout can be <span style="color:#0066CC;">fr</span>, <span style="color:#0066CC;">uk</span>, <span style="color:#0066CC;">dvorak</span>, <span style="color:#0066CC;">be-latin1</span>, etc.
+			<pre style="background-color:#CCCCCC;">loadkeys <em style="color:red">layout</em></pre>
+		</p>
+		<p id="cfdisk">
+			These next commands will create your file system. </br>
+			To start, we create our <span style="color:#0066CC">partitions</span>.
+			<pre style="background-color:#CCCCCC;">cfdisk</pre>
+			<span style="color:#0066CC">CFdisk</span> enables us to write partitions. </br>
+			Select <span style="color:#0066CC">Write</span> and create the following partitions.</br>
+			In this example I'll be using a 60 Gb SSD.</br>
+			</br>
+			<img src="https://dl.dropboxusercontent.com/u/4339037/HTML/INSTALL_ARCHLINUX/Step1_CFdisk1.PNG" style="width:650px">
+		</p>
+		<ul id="create_partitions">
+			<li><span style="color:#0066CC";>sda1</span> as boot with 1024 Mb (1 Gb)
+			<li><span style="color:#0066CC">sda2</span> as swap with 2048 Mb (2 Gb)
+			<li><span style="color:#0066CC">sda3</span> as root with 15360 MB (15 Gb)
+			<li><span style="color:#0066CC">sda4</span> as home with the rest of space.
+		</ul>
+		<p>
+			All of these are <span style="color:#0066CC";>Primary</span>, and start at the <span style="color:#0066CC";>Beginning</span> of space.
+			</br>
+			</br>
+			Next, make sure that sda1 has the <span style="color:#0066CC">Boot</span> flag.
+			</br>
+						<!-- Boot Flag image -->
+			<img src="https://dl.dropboxusercontent.com/u/4339037/HTML/INSTALL_ARCHLINUX/Step1_CFdisk2_redcircles.PNG" style="width:650px">
+			</br>
+			<a src=" " style="width:650px" alt="cfdisk_swap"></a>
+			</br>Second, go to sda2 and select <span style="color:#0066CC">Type</span> to find the correct FS Type called <span style="color:#0066CC">Linux swap / Solaris</span> and it's key is <span style="color:#0066CC">82</span>.
+			<!-- SWAP FS image -->
+			<img src="https://dl.dropboxusercontent.com/u/4339037/HTML/INSTALL_ARCHLINUX/Step1_CFdisk3.PNG" style="width:650px">
+			<a src=" " style="width:650px" alt="cfdisk_swap"></a>
+		</p>
+			Your finished partition table should look like in this picture.
+			<!-- Partition image -->
+			<img src="https://dl.dropboxusercontent.com/u/4339037/HTML/INSTALL_ARCHLINUX/Step1_CFdisk4.PNG" style="width:650px" alt="cfdisk_finish">
+			Now <span style="color:#0066CC";>Write</span> the partitions and quit CFdisk.
+		<p id="format">
+			 With our partitions finished, we must <span style="color:#0066CC";>Mount</span> & <span style="color:#0066CC";>Format</span>. </br>
+			 Just follow the lines below, they are <em>case-sensitive</em>.
+		</p>
+		<p id="format_partitions">
+			<pre style="background-color:#CCCCCC;">mkfs.ext4 -E discard /dev/sda1</pre>
+			<pre style="background-color:#CCCCCC;">mkswap /dev/sda2</pre>
+			<pre style="background-color:#CCCCCC;">swapon /dev/sda2</pre>
+			<pre style="background-color:#CCCCCC;">mkfs.ext4 -E discard /dev/sda3</pre>
+			<pre style="background-color:#CCCCCC;">mkfs.ext4 -E discard /dev/sda4</pre>
+			<pre style="background-color:#CCCCCC;">mount /dev/sda3 /mnt</pre>
+			<pre style="background-color:#CCCCCC;">mkdir -p /mnt/boot</pre>
+			<pre style="background-color:#CCCCCC;">mount /dev/sda1 /mnt/boot</pre>
+			<pre style="background-color:#CCCCCC;">mkdir -p /mnt/home</pre>
+			<pre style="background-color:#CCCCCC;">mount /dev/sda4 /mnt/home</pre>
+			With that, our partitions are finished.
+			</br>We can start installing the <em style="color:#0066CC";>system</em>.
+		</p>
+		<h3 id="step2" style="margin:6px;padding:2px;strong;background-color:black;color:#0066CC;">
+			<font size="6px">
+				Step 2: System Setup
+			</font>
+		</h3>
+		<p id="ping_google">
+			From this point forward, you require an internet connection. 
+			<pre style="background-color:#CCCCCC;">ping -c 3 www.google.com</pre>
+			<!-- Ping Google image -->
+			<img src="https://dl.dropboxusercontent.com/u/4339037/HTML/INSTALL_ARCHLINUX/Step2_PingG1.PNG" style="width:650px" alt="ping_google"></a>
+			If you <span style="color:#0066CC";>fail to recieve</span> any packets back, then solve it <a href="https://wiki.archlinux.org/index.php/Beginners%27_guide#Establish_an_internet_connection">here</a>.
+		</p>
+		<p id="base_install">
+			These next commands install the <em style="color:#0066CC";>base system</em> of Arch Linux. </br>
+			You'll be prompted to confirm downloads, just hit <span style="color:#0066CC";>enter</span>. </br>
+			Also these commands will take time to download.
+		</p>
+			<pre style="background-color:#CCCCCC;">pacstrap -i /mnt base base-devel</pre>
+			<pre style="background-color:#CCCCCC;">pacstrap -i /mnt grub-bios</pre>
+			<pre style="background-color:#CCCCCC;">pacstrap -i /mnt gnome</pre>
+			<img src="http://wweinandout.files.wordpress.com/2013/07/eat-em-up-eat-em-up-grab-a-snack-grab-a-snack1.jpg" style="width:400px" alt="snack">
+			</br>
+			<u>Seriously, grab a snack.</u>
+			</br></br>
+		</p>
+		<p id="genfstab">
+			Now we have to generate a <span style="color:#0066CC">GenFStab</span> file. </br>
+			It stores information about your partitions.
+			<pre style="background-color:#CCCCCC;">genfstab -U -p /mnt >> /mnt/etc/fstab</pre>
+			<pre style="background-color:#CCCCCC;">nano /mnt/etc/fstab</pre>
+			Check the <span style="color:#0066CC";>fstab</span> file to see if your partitions are correct.</br>
+			</br>
+			<img src="https://dl.dropboxusercontent.com/u/4339037/HTML/INSTALL_ARCHLINUX/Step2_GenFStab1.PNG" style="width:650px">
+			If you get an error, then edit the <span style="color:#0066CC";>fstab</span> file.
+			</br></br>
+			These next commands have to edit our mounted files. </br>
+			So, we have to access our <span style="color:#0066CC">chroot</span>.
+			<pre style="background-color:#CCCCCC;">arch-chroot /mnt</pre>
+		</p>
+		<p id="hostname">
+			First we will create your comupter's name, or <span style="color:#0066CC">Hostname</span>. Other computers will see yours as this name over networks. "<i>Archie</i>", is a common hostname.
+			<pre style="background-color:#CCCCCC;">echo <em style="color:red">hostname</em> > /etc/hostname</pre>
+		</p>
+		<p id="time_zone">
+			Next, we set up our timezone.
+			<pre style="background-color:#CCCCCC;font-size: 18px;">ln -s /usr/share/zoneinfo/America/Chicago /etc/localtime</pre>
+			<pre style="background-color:#CCCCCC;">nano /etc/locale.gen</pre>
+			You now uncomment two lines in <span style="color:#0066CC";>locole.gen</span>.</br>
+			These correspond to your timezone. In this tutorial's case we edit:
+			<pre style="background-color:#CCCCCC;">en_US.UTF-8 UTF-8</pre>
+			<pre style="background-color:#CCCCCC;">en_US ISO-8859-1</pre>
+			<img src="https://dl.dropboxusercontent.com/u/4339037/HTML/INSTALL_ARCHLINUX/Step2_localegen1.PNG" style="width:650px">
+			Then exit and save changes.
+		</p>
+		<p id="time_zone_part2">
+			<pre style="background-color:#CCCCCC;">locale-gen</pre>
+			<pre style="background-color:#CCCCCC;">echo LANG=en_US.UTF-8 > /etc/locale.conf</pre>
+			<pre style="background-color:#CCCCCC;">export LANG=en_US.UTF-8</pre>
+			Now your timezone and hostname are set up.
+		</p>
+		<p id="boot_loader">
+			These lines will install our <span style="color:#0066CC">Boot Loader</span>.</br>
+			This will enable us to boot into our system.</br>
+			<span style="font-size:16px">Note: We are installing the <span style="color:#0066CC">GRUB</span> boot loader.</span>
+			<pre style="background-color:#CCCCCC;">pacman -Syy</pre>
+			<pre style="background-color:#CCCCCC;">pacman -S grub grub-bios</pre>
+			Lets also get os-prober, it's a utility to detect other OSes on your drives.
+			<pre style="background-color:#CCCCCC;">pacman -S os-prober</pre>
+			<pre style="background-color:#CCCCCC;font-size: 18px;">grub-install --target=i386-pc --recheck --debug /dev/sda</pre>
+			<pre style="background-color:#CCCCCC;">grub-mkconfig -o /boot/grub/grub.cfg</pre>
+			<pre style="background-color:#CCCCCC;">pacman -Syu</pre>
+			<pre style="background-color:#CCCCCC;">pacman -Syy</pre>
+		</p>
+		<p id="internet">
+			This command will enable our system's <span" style="color:#0066CC">internet connection</span>.
+			<pre style="background-color:#CCCCCC;">systemctl enable dhcpcd.service</pre>
+		</p>
+		<p id="multilib">
+			If you want (or need) a <span style="color:#0066CC">64x version of Arch</span>, we neeed to edit the <span style="color:#0066CC">pacman.conf</span> file.
+			<pre style="background-color:#CCCCCC;">nano /etc/pacman.conf</pre>
+			In this file, we want to uncomment these two lines:
+			<pre style="background-color:#CCCCCC;">[multilib]</pre>
+			<pre style="background-color:#CCCCCC;">Include = /etc/pacman.d/mirrorlist</pre>
+			<img src="https://dl.dropboxusercontent.com/u/4339037/HTML/INSTALL_ARCHLINUX/Step2_pacmanconf1.PNG" style="width:650px">
+			<p id="ILoveCanady">
+			<span style="font-size: 16px">Note: There is a fitting option, adding an <code>ILoveCandy</code> line to the <a href="https://dl.dropboxusercontent.com/u/4339037/HTML/INSTALL_ARCHLINUX/Step2_pacmanILoveCandy.PNG"><code>Misc options</code></a> section. Making boring hash-symbols look like pacman eating dots! BTW, it's case-sensitive too.</span>
+			</p>
+			Save changes and run this command.
+			<pre style="background-color:#CCCCCC;">mkinitcpio -p linux</pre>
+		</p>
+		<p id="root_password">
+			Below, we'll setup your <span style="color:#0066CC">Root Password</span>. </br></br>
+			You will be using this password <em>whenever</em> you want to install a program or do something as <span style="color:#0066CC">root</span>. </br></br>
+			Make sure this password is <span style="color:#0066CC">strong</span>.</br>
+			Phrases are long and easy to remember;</br> they also take the life of the universe to brute-force!
+			<pre style="background-color:#CCCCCC;">passwd</pre>
+		</p>
+		<p id="umount">
+			Once you're done, sync and exit the file system with:
+			<pre style="background-color:#CCCCCC;">pacman -Syy</pre>
+			<pre style="background-color:#CCCCCC;">exit</pre>
+			Now to unmount, update, sync, and reboot the system.</br>
+			<span style="font-size:16px">Note: This command reads as <span style="color:#0066CC">U</span>mount, not <span style="color:#0066CC">UN</span>mount.</span>
+			<pre style="background-color:#CCCCCC;">umount /mnt/boot</pre>
+			<pre style="background-color:#CCCCCC;">umount /mnt/home</pre>
+			<pre style="background-color:#CCCCCC;">umount /mnt</pre>
+			<pre style="background-color:#CCCCCC;">pacman -Syu</pre>
+			<pre style="background-color:#CCCCCC;">pacman -Syy</pre>
+			<pre style="background-color:#CCCCCC;">reboot</pre>
+		</p>
+		<h3 id="step3" style="margin:6px;strong;background-color:black;color:#0066CC;padding:2px;">
+			<font size="6px">
+				Part 3: Finishing Touches
+			</font size>
+		</h3>
+		<p>
+			<!-- Boot OS image -->
+			<img src="https://dl.dropboxusercontent.com/u/4339037/HTML/INSTALL_ARCHLINUX/Step3_BootOS1.PNG" style="width:650px" alt="boot_os"></a>
+		</p>
+		<p id="sys_login">
+			After you restart and boot, select <span style="color:#0066CC">Boot existing OS</span> at the boot menu then login as as root with your root password.
+			</br></br>Login as:
+			<pre style="background-color:#CCCCCC;">root</pre>
+			and enter your password:
+			<pre style="background-color:#CCCCCC;"><span style="color:red">password</span></pre>
+			<!-- Login image -->
+			<img src="https://dl.dropboxusercontent.com/u/4339037/HTML/INSTALL_ARCHLINUX/Step3_login.PNG" style="width:650px" alt="login"></a>
+		</p>
+		<p id="pacman_sudo">
+			Time to update Arch and install sudo.
+			Sudo is our administrative tool.
+			<pre style="background-color:#CCCCCC;">pacman -S sudo</pre>
+			<pre style="background-color:#CCCCCC;">pacman -Syu</pre>
+			<pre style="background-color:#CCCCCC;">pacman -Syy</pre>
+		</p>
+		<p id="make_user">
+			We can create our <span style="color:#0066CC">User</span> now that we have sudo. </br>
+			Enter your choice of name in <span style="color:red">username</span>. </br>
+			It can only have lower-case letters.
+			<pre style="background-color:#CCCCCC;font-size: 19px;">useradd -m -g users -G wheel -s /bin/bash <span style="color:red">username</span></pre>
+			Now, create the password for your <span style="color:#0066CC">User</span>. </br>
+			You use this password to download packages with sudo. </br>
+			Using root as your <u>main user</u> would break a lot of things.</br>
+			Make it different form your <em style="color:#0066CC">root password</em> too.
+			<pre style="background-color:#CCCCCC;">passwd</pre>
+			<img src="https://dl.dropboxusercontent.com/u/4339037/HTML/INSTALL_ARCHLINUX/Step3_make_user.PNG" style="width:650px">
+			This command will show you the <span style="color:#0066CC">sudoers</span> file. </br>
+			<pre style="background-color:#CCCCCC;">nano /etc/sudoers</pre>
+			Uncomment this in the file.</br>
+			<pre style="background-color:#CCCCCC;">%wheel ALL=(ALL) ALL</pre>
+			<img src="https://dl.dropboxusercontent.com/u/4339037/HTML/INSTALL_ARCHLINUX/Step3_wheel_comment_redcircles.PNG" style="width:650px">
+			Delete the <span style="color:#0066CC">hashtag</span>.</br>
+			</br>
+			Save changes.<br>
+			Update the system with the following command.
+			<pre style="background-color:#CCCCCC;">pacman -Syy</pre>
+		</p>
+		<p id="gnome_desktop">
+			Finally, to install the <span style="color:#0066CC">desktop environment</span>.</br>
+			<pre style="background-color:#CCCCCC;">pacman -S gnome xorg</pre>
+			Accept all download prompts.</br>
+			<u>Get more snacks.</u>
+			<pre style="background-color:#CCCCCC;">pacman -Syu</pre>
+			<pre style="background-color:#CCCCCC;">pacman -Syy</pre>	
+			Enable Gnome and restart.
+			<pre style="background-color:#CCCCCC;">systemctl enable gdm.service</pre>
+			<pre style="background-color:#CCCCCC;">reboot</pre>
+		</p>
+		<p id="end">
+			Login with your user on startup and that is it!</br>
+			You have installed <span style="color:#0066CC">Arch Linux</span>! </br>
+			</br>
+			<img src="https://dl.dropboxusercontent.com/u/4339037/HTML/INSTALL_ARCHLINUX/Step3_end3.PNG" style="width:650px">
+			<span style="font-size:16px">If you can't login with your user, login as root and find the <span style="color:#0066CC">Terminal</span>.</br>
+			Then, type this in.
+			<pre style="background-color:#CCCCCC;">passwd <em style="color:red">username</em></pre>
+			</span>
+		</p>
+		<h3 id="post_install" style="margin:6px;strong;background-color:black;color:#0066CC;padding:2px;">
+			<font size="6px">
+				Post Installation
+			</font size>
+		</h3>
+		<p>
+			First, understand <em>what</em> you use <span style="color:#0066CC">PacMan</span> for. </br></br>
+			Pacman stands for <span style="color:#0066CC">Pac</span>kage <span style="color:#0066CC">Man</span>ager. </br>
+			It's purpose is to organize all of Arch's packages simplisticlly. </br>
+			To install an app, you first open Terminal and type <code>sudo</code>.
+		</p>
+		<p>
+			We cannot install apps without permission from root.</br>
+			That is why we need sudo and a <span style="color:#0066CC">decent password</span>.</br>
+			Next we have the rest of the command.
+			<pre style="background-color:#CCCCCC;">pacman -S <span style="color:red">application</span></pre>
+		</p>
+		<p>
+			If I wanted <em>VLC</em>, I would get it though pacman like so.
+			<pre style="background-color:#CCCCCC;">sudo pacman -S vlc</pre>
+			If I wanted <em>Firefox</em>, like so.
+			<pre style="background-color:#CCCCCC;">sudo pacman -S firefox</pre>
+			If I wanted any <em style="color:red">application</em>, then like so.
+			<pre style="background-color:#CCCCCC;">sudo pacman -S <em style="color:red">application</em></pre>
+		</p>
+		<p>
+			This works with Steam, Mumble, Teamspeak3, etc. </br>
+			What if you look for an app, but don't know the app's name? </br></br>
+			That's when you search <a href="https://www.archlinux.org/packages/">the Arch Repository</a> and <a href="https://aur.archlinux.org/packages/">AUR</a>.
+		</p>
+		<p>
+			A <span style="color:#0066CC">repository</span> is a place where packages are stored. </br>
+			Most repositories have standards such as <span style="color:#0066CC">free software only</span>. </br>
+			The Arch repo contains free and nonfree software: </br>
+			Nonfree as in <a href="https://en.wikipedia.org/wiki/Skype_security#Eavesdropping_by_design">Skype</a> and Steam.
+		</p>
+		<p>
+		Out of good character, here is a list of apps for you.
+		<ul>
+			<li>Gedit
+			<li>ALSA
+			<li>Geany
+			<li>Pidgin
+			<li>Mumble
+			<li>youtube-dl
+			<li>KeePass
+			<li>TrueCrypt
+			<li>bzip2
+			<li>Gimp
+			<li>cowsay
+			<li>Thunderbird
+		</ul>
+		These are just apps, you may want video card drivers.</br>
+		Search the Arch Repository for <span style="color:#0066CC">AMD</span> or <span style="color:#0066CC">NVIDIA</span> drivers.
+		</p>
+		<p>
+		These are just from the offical Arch repo.</br>
+		More programs that are useful can be found on the <span style="color:#0066CC">AUR</span>:
+		</br>
+		The <span style="color:#0066CC">A</span>rch <span style="color:#0066CC">U</span>ser <span style="color:#0066CC">R</span>epository</br>
+		I'll leave you with that.
+		</p>
+		<p id="ending">
+		<span style="color:#0066CC">END_</span>
+		</p>
+	</strong>
+	</font>
+	</body>
+</section
+</center>
 </html>
