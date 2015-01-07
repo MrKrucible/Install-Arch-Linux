@@ -1,4 +1,6 @@
 # Install-Arch-Linux
+http://mrkrucible.github.io/Install-Arch-Linux/
+
 ##todo:
 - Fix current errors in tutorial.html
 - Rewrite tutorial.html in Git markup.
